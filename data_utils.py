@@ -1020,7 +1020,7 @@ def getCriteoAdData(
                     )
                 else:
                     X_cat[i] = np.array(
-                        list(map(lambda x: int(x, 16), line[14:])), dtype=np.int32
+                        list(map(lambda x: int(x, 16) % (2**31-1), line[14:])), dtype=np.int32
                     )
 
                 # count uniques
@@ -1292,7 +1292,7 @@ if __name__ == "__main__":
     parser.add_argument("--data-sub-sample-rate", type=float, default=0.0)  # in [0, 1]
     parser.add_argument("--data-randomize", type=str, default="total")  # or day or none
     parser.add_argument("--memory-map", action="store_true", default=False)
-    parser.add_argument("--data-set", type=str, default="kaggle")  # or terabyte
+    parser.add_argument("--data-set", type=str, default="terabyte")  # or terabyte
     parser.add_argument("--raw-data-file", type=str, default="")
     parser.add_argument("--processed-data-file", type=str, default="")
     args = parser.parse_args()
